@@ -1,0 +1,21 @@
+# Python cruft
+__pycache__/
+*.pyc
+
+# Virtualenv
+.venv/
+env/
+venv/
+
+# Jupyter stuff
+.notebooks_checkpoints/
+*/.ipynb_checkpoints/
+
+# Data (only if you don't want raw data in Git)
+data/
+outputs/
+logs/
+
+# OS junk
+.DS_Store
+Thumbs.db
