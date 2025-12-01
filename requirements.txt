@@ -1,3 +1,3 @@
-pandas
-pyyaml
-openpyxl
+pandas==2.3.3
+pyyaml==6.0.3
+openpyxl==3.1.5
