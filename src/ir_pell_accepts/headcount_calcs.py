@@ -189,15 +189,19 @@ def fall_enrollment(
     eids = dfe.loc[enrollment_conditions, id_column].dropna()
     rids = dfr.loc[dfr['Cohort Name'] != incoming_transfer_cohort, id_column].dropna()
     rids_t = dfr.loc[dfr['Cohort Name'] == incoming_transfer_cohort, id_column].dropna()
+         
+    n_pell_intr = len(set(pids) & set(eids) & set(rids_t))
     
     if not pell and not transfer:
-        size = len(set(eids) & set(rids))
+        # size = len(set(eids) & set(rids)) # due to some students have too old of a cohort to be found in the cohort/retention file, they are being included in the fall enrollment non-incoming group. Hence "size = " has been updated to be the difference between the total enrollment minus the total incoming transfer
+        size = len(set(eids)) - len(set(rids_t))
     elif pell and not transfer:
-        size = len(set(pids) & set(eids) & set(rids))
+        # size = len(set(eids) & set(rids)) # due to some students have too old of a cohort to be found in the cohort/retention file, they are being included in the fall enrollment non-incoming group. Hence "size = " has been updated to be the difference between the total enrollment minus the total incoming transfer pell
+        size = len(set(pids) & set(eids)) - n_pell_intr
     elif not pell and transfer:
         size = len(set(eids) & set(rids_t))
     else:
-        size = len(set(pids) & set(eids) & set(rids_t))
+        size = n_pell_intr
 
     # Return overlap size
     return size
