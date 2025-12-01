@@ -10,6 +10,7 @@ venv/
 # Jupyter stuff
 .notebooks_checkpoints/
 */.ipynb_checkpoints/
+.ipynb_checkpoints/
 
 # Data (only if you don't want raw data in Git)
 data/
